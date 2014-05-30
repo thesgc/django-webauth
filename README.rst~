@@ -41,36 +41,3 @@ Add something like the following to your crontab to keep your Kerberos ticket al
 
     * * * * * /sbin/start-stop-daemon --start --oknodo --quiet --pidfile /var/run/k5start.pid --exec /usr/bin/k5start -- -b -K 5 -p /var/run/k5start.pid -f /path/to/keytab webauth/aardvark.ox.ac.uk
 
-Installation instructions for Centos
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Installation requires python 2.7
-
-This is installed as follows:
-
-First install python 2.7
-
-	yum groupinstall "Development tools"
-	yum install zlib-devel bzip2-devel openssl openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel -y
-	cd ~
-	wget http://python.org/ftp/python/2.7.6/Python-2.7.6.tar.xz
-	tar xf Python-2.7.6.tar.xz
-	cd Python-2.7.6
-	./configure --prefix=/usr/local --enable-unicode=ucs4 --enable-shared LDFLAGS="-Wl,-rpath /usr/local/lib"
-	make && make altinstall
-	ln -s  /usr/local/bin/python2.7 /usr/bin/python2.7
-	wget https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py
-	python2.7 ez_setup.py
-	easy_install-2.7 -i http://pypi.douban.com/simple pip
-
-Next install the django webauth code
-
-	git clone https://github.com/ox-it/django-webauth /tmp/django-webauth
-
-
-Next create a virtualenv for the django webauth
-
-	mkvirtualenv --python=/usr/local/bin/python2.7 cbh_stage
-	pip install /tmp/django-webauth
-
-
