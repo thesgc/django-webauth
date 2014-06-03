@@ -2,9 +2,11 @@ import logging
 import requests
 
 from django.conf import settings
-from django.contrib.auth.models import User, Group, UNUSABLE_PASSWORD
+from django.contrib.auth.models import  Group, UNUSABLE_PASSWORD
 from requests.auth import HTTPKerberosAuth
+from django.contrib.auth import get_user_model
 
+User = get_user_model()
 
 logger = logging.getLogger(__name__)
 
