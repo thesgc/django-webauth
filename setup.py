@@ -15,7 +15,7 @@ setup(
     description="WebAuth/LDAP integration for Django",
     author='IT Services, University of Oxford',
     author_email='infodev@it.ox.ac.uk',
-    version='0.3.4',
+    version='0.3.5',
     license='BSD',
     url='https://github.com/ox-it/django-webauth',
     long_description=open('README.rst').read(),

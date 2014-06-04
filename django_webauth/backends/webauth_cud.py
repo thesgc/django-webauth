@@ -3,7 +3,7 @@ import requests
 
 from django.conf import settings
 from django.contrib.auth.models import  Group
-from requests.auth import HTTPKerberosAuth
+from requests_kerberos import HTTPKerberosAuth
 from django.contrib.auth import get_user_model
 import random
 
