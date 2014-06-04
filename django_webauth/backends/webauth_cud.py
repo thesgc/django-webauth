@@ -2,9 +2,10 @@ import logging
 import requests
 
 from django.conf import settings
-from django.contrib.auth.models import  Group, UNUSABLE_PASSWORD
+from django.contrib.auth.models import  Group
 from requests.auth import HTTPKerberosAuth
 from django.contrib.auth import get_user_model
+import random
 
 User = get_user_model()
 
@@ -17,7 +18,9 @@ class WebauthCUDBackend(object):
                 "https://ws.cud.ox.ac.uk/cudws/rest/search")
 
     def authenticate(self, username):
-        user, created = User.objects.get_or_create(username=username, defaults={'password': UNUSABLE_PASSWORD})
+
+        hash = random.getrandbits(128)
+        user, created = User.objects.get_or_create(username=username, defaults={'password': "%032x" % hash})
         if created:
             logger.info("Created user: (%s - id:%s)" % (username, user.id))
         else:
