@@ -18,7 +18,7 @@ setup(
     version='0.3.4',
     license='BSD',
     url='https://github.com/ox-it/django-webauth',
-    long_description=open('README.rst').read(),
+    #long_description=open('README.rst').read(),
     classifiers=['Development Status :: 4 - Beta',
                  'Framework :: Django',
                  'License :: OSI Approved :: BSD License',
