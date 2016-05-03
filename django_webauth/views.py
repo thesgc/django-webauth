@@ -4,10 +4,11 @@ from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 from django.contrib.auth import authenticate, login, logout, BACKEND_SESSION_KEY, REDIRECT_FIELD_NAME
 
-from django_conneg.views import HTMLView
-from django_conneg.http import HttpResponseSeeOther
+from django.views.generic import View
+from django.http import HttpResponseRedirect
 
-class LoginView(HTMLView):
+
+class LoginView(View):
     redirect_field_name = REDIRECT_FIELD_NAME
 
     def get(self, request):
@@ -25,9 +26,9 @@ class LoginView(HTMLView):
         elif netloc and netloc != request.get_host():
             redirect_to = settings.LOGIN_REDIRECT_URL
 
-        return HttpResponseSeeOther(redirect_to)
+        return HttpResponseRedirect(redirect_to)
 
-class LogoutView(HTMLView):
+class LogoutView(View):
     def get(self, request):
         context = {
             'was_webauth': request.session.get(BACKEND_SESSION_KEY) == 'django_webauth.backends.WebauthBackend',
